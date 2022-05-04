@@ -1,5 +1,9 @@
 package com.driw.assingment.shop.driw_shop.services.interfaces;
 
-public interface ProductService {
+import com.driw.assingment.shop.driw_shop.dto.ProductDTO;
 
+import java.util.List;
+
+public interface ProductService {
+    List<ProductDTO> getAll();
 }

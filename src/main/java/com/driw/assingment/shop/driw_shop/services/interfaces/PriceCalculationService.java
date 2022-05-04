@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface PriceCalculationService {
     ProductPriceDTO  calculatePrice(int product_id,int quantity);
-    List<ProductPriceDTO> getPriceList(int itemId);
+    List<ProductPriceDTO> getPriceList(int product_id);
 }

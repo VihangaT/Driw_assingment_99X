@@ -7,6 +7,7 @@ import com.driw.assingment.shop.driw_shop.repositories.ProductRepository;
 import com.driw.assingment.shop.driw_shop.services.interfaces.PriceCalculationService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,33 +22,38 @@ public class PriceCalculationServiceImplementation implements PriceCalculationSe
 
     @Override
     public ProductPriceDTO calculatePrice(int product_id, int quantity) {
-        Product item = productRepository.findById((long) product_id)
-                .orElseThrow(() -> new ProductNotFoundException(product_id));;
+        Product product = productRepository.findById((long) product_id)
+                .orElseThrow(() -> new ProductNotFoundException(product_id));
 
         double price = 0;
-        if (quantity < item.getItemsPerCarton()) {
-            price = 1.3 * item.getCartonPrice() * quantity;
-        } else if (quantity == item.getItemsPerCarton()) {
-            price = item.getCartonPrice();
-        } else if (quantity > item.getItemsPerCarton()) {
-            int noOfCartons = quantity / item.getItemsPerCarton();
-            int noOfSingleUnits = quantity % item.getItemsPerCarton();
+        if (quantity < product.getItemsPerCarton()) {
+            price = 1.3 * product.getCartonPrice() * quantity;
+        } else if (quantity == product.getItemsPerCarton()) {
+            price = product.getCartonPrice();
+        } else if (quantity > product.getItemsPerCarton()) {
+            int numberOfCartons = quantity / product.getItemsPerCarton();
+            int noOfSingleUnits = quantity % product.getItemsPerCarton();
 
-            if (noOfCartons > 3) {
-                price = (noOfCartons * item.getCartonPrice()) * 0.9;
+            if (numberOfCartons > 3) {
+                price = (numberOfCartons * product.getCartonPrice()) * 0.9;
             } else {
-                price = noOfCartons * item.getCartonPrice();
+                price = numberOfCartons * product.getCartonPrice();
             }
 
             if (noOfSingleUnits > 0) {
-                price += noOfSingleUnits * item.getCartonPrice() * 1.3;
+                price += noOfSingleUnits * product.getCartonPrice() * 1.3;
             }
         }
         return new ProductPriceDTO(product_id, quantity, price);
     }
 
     @Override
-    public List<ProductPriceDTO> getPriceList(int itemId) {
-        return null;
+    public List<ProductPriceDTO> getPriceList(int product_id) {
+        List<ProductPriceDTO> priceList = new ArrayList<>();
+        Product item = productRepository.findById((long) product_id).orElseThrow(() -> new ProductNotFoundException(product_id));
+        for (int i=1; i<=50; i++) {
+            priceList.add(new ProductPriceDTO(product_id, i, calculatePrice(product_id, i).getPrice()));
+        }
+        return priceList;
     }
 }

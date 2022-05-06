@@ -32,22 +32,23 @@ public class PriceCalculationServiceImplementation implements PriceCalculationSe
 
         double price;
         int itemsPerCarton=product.getItemsPerCarton();
+        double cartonPrice=product.getCartonPrice();
         if (quantity < itemsPerCarton) {
-            price = 1.3 * product.getCartonPrice() * quantity;
+            price = 1.3 * cartonPrice * quantity;
         } else if (quantity == itemsPerCarton) {
-            price = product.getCartonPrice();
+            price = cartonPrice;
         } else {
             int numberOfCartons = quantity / itemsPerCarton;
             int noOfSingleUnits = quantity % itemsPerCarton;
 
             if (numberOfCartons > 3) {
-                price = (numberOfCartons * product.getCartonPrice()) * 0.9;
+                price = (numberOfCartons * cartonPrice) * 0.9;
             } else {
-                price = numberOfCartons * product.getCartonPrice();
+                price = numberOfCartons * cartonPrice;
             }
 
             if (noOfSingleUnits > 0) {
-                price += noOfSingleUnits * product.getCartonPrice() * 1.3;
+                price += noOfSingleUnits * cartonPrice * 1.3;
             }
         }
         return new ProductPriceDTO(productId, quantity, price);

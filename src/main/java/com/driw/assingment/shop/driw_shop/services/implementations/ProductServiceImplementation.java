@@ -20,7 +20,7 @@ public class ProductServiceImplementation implements ProductService {
     @Override
     public List<ProductDTO> getAll() {
         return productRepository.findAll().stream()
-                .map(product -> new ProductDTO(product.getProduct_id(), product.getProduct_name(), product.getItemsPerCarton(), product.getCartonPrice()))
+                .map(product -> new ProductDTO(product.getProductId(), product.getProductName(), product.getItemsPerCarton(), product.getCartonPrice()))
                 .collect(Collectors.toList());
     }
 

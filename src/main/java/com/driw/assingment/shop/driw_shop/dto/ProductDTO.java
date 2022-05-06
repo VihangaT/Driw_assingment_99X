@@ -11,8 +11,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ProductDTO {
-    private long product_id;
-    private String product_name;
+    private long productId;
+    private String productName;
     private int itemsPerCarton;
     private double cartonPrice;
 }

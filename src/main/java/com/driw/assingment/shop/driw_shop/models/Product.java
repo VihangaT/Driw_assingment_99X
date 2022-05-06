@@ -17,9 +17,9 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    private Long product_id;
+    private Long productId;
     @Column(nullable = false)
-    private String product_name;
+    private String productName;
     @Column(nullable = false)
     private Integer itemsPerCarton;
     @Column(nullable = false)

@@ -24,7 +24,6 @@ public class PriceCalculationServiceImplementation implements PriceCalculationSe
         this.productRepository=productRepository;
     }
 
-
     @Override
     public ProductPriceDTO calculatePrice(int productId, int quantity) {
         Product product = productRepository.findById((long) productId)

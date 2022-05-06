@@ -21,7 +21,7 @@ public class Product {
     @Column(nullable = false)
     private String product_name;
     @Column(nullable = false)
-    private int itemsPerCarton;
+    private Integer itemsPerCarton;
     @Column(nullable = false)
-    private int cartonPrice;
+    private Double cartonPrice;
 }

@@ -14,5 +14,5 @@ public class ProductDTO {
     private long product_id;
     private String product_name;
     private int itemsPerCarton;
-    private int cartonPrice;
+    private double cartonPrice;
 }

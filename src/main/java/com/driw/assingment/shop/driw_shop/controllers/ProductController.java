@@ -31,17 +31,17 @@ public class ProductController {
         return ResponseEntity.ok(this.productService.getAll());
     }
 
-//    http://localhost:8080/product/2/price?qty=10
-    @GetMapping(value = "/{product_id}/price", produces = APPLICATION_JSON_VALUE)
-    ResponseEntity<ProductPriceDTO> getPrice(@PathVariable int product_id, @RequestParam("quantity") int quantity) throws ProductNotFoundException {
-        ProductPriceDTO itemPrice = priceCalculationService.calculatePrice(product_id, quantity);
+//    http://localhost:8080/product/2/price?quantity=10
+    @GetMapping(value = "/{productId}/price", produces = APPLICATION_JSON_VALUE)
+    ResponseEntity<ProductPriceDTO> getPrice(@PathVariable int productId, @RequestParam("quantity") int quantity) throws ProductNotFoundException {
+        ProductPriceDTO itemPrice = priceCalculationService.calculatePrice(productId, quantity);
         return ResponseEntity.ok(itemPrice);
     }
 
 //    http://localhost:8080/product/1/price-list
-    @GetMapping(value = "/{product_id}/price-list", produces = APPLICATION_JSON_VALUE)
-    ResponseEntity<List<ProductPriceDTO>> getPriceList(@PathVariable int product_id) {
-        return ResponseEntity.ok(priceCalculationService.getPriceList(product_id));
+    @GetMapping(value = "/{productId}/price-list", produces = APPLICATION_JSON_VALUE)
+    ResponseEntity<List<ProductPriceDTO>> getPriceList(@PathVariable int productId) {
+        return ResponseEntity.ok(priceCalculationService.getPriceList(productId));
     }
 
 }

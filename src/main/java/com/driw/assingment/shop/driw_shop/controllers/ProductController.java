@@ -14,7 +14,7 @@ import java.util.List;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/api/v1/product")
 public class ProductController {
 
     private PriceCalculationService priceCalculationService;
@@ -26,20 +26,20 @@ public class ProductController {
         this.productService=productService;
     }
 
-//    http://localhost:8090/product/
+//   http://localhost:8090/api/v1/product
     @GetMapping("")
     ResponseEntity<List<ProductDTO>> getAllItems() {
         return ResponseEntity.ok(this.productService.getAll());
     }
 
-//    http://localhost:8080/product/2/price?quantity=10
+//   http://localhost:8090/api/v1/product/1/price?quantity=40
     @GetMapping(value = "/{productId}/price", produces = APPLICATION_JSON_VALUE)
     ResponseEntity<ProductPriceDTO> getPrice(@PathVariable int productId, @RequestParam("quantity") int quantity) throws ProductNotFoundException {
         ProductPriceDTO itemPrice = priceCalculationService.calculatePrice(productId, quantity);
         return ResponseEntity.ok(itemPrice);
     }
 
-//    http://localhost:8080/product/1/price-list
+//    http://localhost:8090/api/v1/product/1/price-list
     @GetMapping(value = "/{productId}/price-list", produces = APPLICATION_JSON_VALUE)
     ResponseEntity<List<ProductPriceDTO>> getPriceList(@PathVariable int productId) {
         return ResponseEntity.ok(priceCalculationService.getPriceList(productId));

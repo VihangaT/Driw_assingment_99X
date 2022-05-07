@@ -26,6 +26,7 @@ public class ProductController {
         this.productService=productService;
     }
 
+//    http://localhost:8090/product/
     @GetMapping("")
     ResponseEntity<List<ProductDTO>> getAllItems() {
         return ResponseEntity.ok(this.productService.getAll());

@@ -1,24 +1,23 @@
-import logo from './logo.svg';
+import Topbar from './components/topbar/Topbar';
 import './App.css';
-
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes
+} from "react-router-dom";
+import PriceCalculator from './pages/PriceCalculator/PriceCalculator.jsx'
+import PriceCatelog from './pages/PriceCatelog/PriceCatelog';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+            <Topbar />
+            <div className="container">
+              <Routes>
+                <Route exact path="/" element={<PriceCatelog />}></Route>
+                <Route path="/calculator" element={<PriceCalculator />}></Route>
+              </Routes>
+            </div>
+          </Router>
   );
 }
 

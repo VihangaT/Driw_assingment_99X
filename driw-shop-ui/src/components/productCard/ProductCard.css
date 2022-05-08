@@ -13,7 +13,6 @@
 	flex-direction: column;
 	min-height: 10vh;
 	margin: 0;
-
 }
 
 .card {
@@ -22,7 +21,9 @@
 	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
 	display: flex;
 	max-width: 100%;
-	margin: 20px;
+	margin: 10px;
+	margin-bottom: 10px;
+	text-align: center;
 	overflow: hidden;
 	width: 700px;
 }
@@ -41,25 +42,26 @@
 
 
 .info {
-	padding: 30px;
+	padding:20px;
 	position: relative;
 	width: 100%;
+
 }
-
-
 
 .btn {
 	background-color: #2A265F;
 	border: 0;
+	padding-top: 30px;
 	border-radius: 50px;
 	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
 	color: #fff;
 	font-size: 16px;
 	padding: 12px 25px;
 	position: absolute;
-	bottom: 30px;
+	bottom: 15px;
 	right: 30px;
 	letter-spacing: 1px;
+	
 }
 
 .btn.active,

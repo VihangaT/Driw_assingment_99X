@@ -6,10 +6,6 @@ import Productcard from "../../components/productCard/ProductCard";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
-  // const [seproductslectedItemId, setSelectedItemId] = useState(0);
-  // const [qty, setQty] = useState("");
-  // const [price, setPrice] = useState(0);
-
   useEffect(() => {
     axios
       .get("http://localhost:8080/api/v1/product")
@@ -25,7 +21,6 @@ const Home = () => {
   }, []);
   return (
     <div className="container">
-      {/* {JSON.stringify(products)} */}
           {products.map((product) => (
             <Productcard key={product.productId} productId={product.productId} productName={product.productName} cartonPrice={product.cartonPrice} />
           ))}      
